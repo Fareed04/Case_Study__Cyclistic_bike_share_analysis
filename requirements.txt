@@ -1,0 +1,4 @@
+pandas
+ipykernel
+matplotlib==3.10.8
+numpy
