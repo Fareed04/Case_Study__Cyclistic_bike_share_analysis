@@ -1,34 +1,40 @@
-# Case Study: Cyclistic Bike Share Analysis
+# 🚴 Cyclistic Bike-Share Case Study
 
-## 🎯 Business Task
+## Phase 1 — ASK
 
-Analyze historical trip data to identify distinct riding patterns between casual riders and annual members. The ultimate goal is to design marketing strategies aimed at converting casual riders into annual members, targeting a 10% increase in the conversion rate over the next year.
+### Business Task
 
----
-
-## 👥 Stakeholders
-
-• Lily Moreno (Director of Marketing): Responsible for the development of campaigns and the overall success of the marketing initiative.
-• Cyclistic Marketing Analytics Team: Responsible for collecting, analyzing, and reporting data to guide strategy development.
-• Cyclistic Executive Team: The decision-making body responsible for approving the recommended marketing program.
-🛠 Project Parameters
+Analyze behavioral differences between casual riders and annual members using historical trip data to identify usage patterns associated with remaining a casual rider and support data-driven marketing decision-making aimed at increasing membership conversion.
 
 ---
 
-## Success Criteria
-• Identification of key behavioral differences between user types.
-• Development of at least two actionable and successful marketing strategies.
-• A clear roadmap for increasing annual memberships.
+### Stakeholders
+
+**Lily Moreno (Director of Marketing)**  
+Responsible for developing and executing marketing campaigns. Focused on campaign effectiveness, ROI, data privacy compliance, and ensuring insights align with strategic business goals.
+
+**Cyclistic Marketing Analytics Team**  
+Responsible for collecting, analyzing, and reporting data to guide marketing strategy. Focused on data quality, analytical integrity, privacy adherence, and measurable business impact.
+
+**Cyclistic Executive Team**  
+Responsible for approving strategic initiatives. Focused on long-term company growth, profitability, risk mitigation, and ensuring recommendations are supported by credible analysis.
 
 ---
 
-## Constraints
-• Data Scope: Analysis is restricted to data from the last 12 months only.
-📊 Methodology (Data Analysis Process)
-The project follows the six steps of the data analysis process:
-1. Ask: Define the business challenge, identify stakeholders, and determine the specific metrics for success.
-2. Prepare: Locate and identify the last 12 months of Cyclistic data, ensuring it is credible, organized, and properly formatted.
-3. Process: Clean the data to remove inaccuracies, handle missing values, and ensure data integrity for analysis.
-4. Analyze: Perform exploratory data analysis (EDA) to find trends, patterns, and relationships within the riding data.
-5. Share (Show): Create compelling data visualizations and reports to effectively communicate findings to the Executive Team and Lily Moreno.
-6. Act: Provide the final recommendations and actionable marketing strategies based on the insights discovered
+### Success Criteria
+
+- Clear, quantified differentiation between casual riders and annual members based on behavioral and usage patterns.
+- Statistically supported comparisons identifying meaningful trends.
+- Identification of high-potential behavioral segments for conversion.
+- Executive-ready insights supported by professional data visualizations.
+- Actionable marketing recommendations backed by analytical evidence.
+
+---
+
+### Constraints
+
+- Analysis limited to the previous 12 months of historical trip data.
+- No use of personally identifiable information (PII).
+- No demographic linking or inference beyond available trip data.
+- Conclusions must rely on objective statistical comparisons rather than assumptions.
+- Insights are limited to behavioral data and cannot establish direct causation.
