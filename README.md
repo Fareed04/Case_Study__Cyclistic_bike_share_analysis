@@ -104,3 +104,72 @@ The dataset spans 12 monthly files and contains a substantial number of ride rec
 The dataset is sufficient to address the business task because it contains trip-level behavioral data that allows for direct comparison between casual riders and annual members. The `member_casual` variable enables segmentation, while timestamps, ride duration, station information, and rideable type provide measurable indicators of usage behavior.
 
 Although demographic and payment data are not included, the business objective focuses on behavioral differences rather than customer profiling. Therefore, trip-level operational data is adequate to generate actionable insights aimed at supporting membership conversion strategies.
+
+## Phase 3 — PROCESS
+
+### Data Cleaning and Feature Engineering
+
+After merging all 12 monthly datasets (5,552,092 rows), a structured and controlled cleaning pipeline was implemented to ensure data integrity while preserving meaningful ride behavior.
+
+---
+
+### 1. Column Standardization
+
+- Renamed `started_at` → `ride_start_datetime`
+- Renamed `ended_at` → `ride_end_datetime`
+- Converted both columns to datetime format to enable accurate time-based calculations.
+
+---
+
+### 2. Duplicate Handling
+
+- Removed duplicate rows to maintain dataset integrity.
+- Ensured no repeated ride records remained in the dataset.
+
+---
+
+### 3. Station Name Recovery via Coordinate Mapping
+
+Instead of removing rows with missing station names, a coordinate-based recovery strategy was implemented:
+
+- Rounded latitude and longitude values to 4 decimal places (~11m precision).
+- Built a master lookup table of known coordinate–station pairs.
+- Recovered missing `start_station_name` and `end_station_name` values using coordinate matching.
+- Remaining unresolved stations were labeled as: `Public Rack/Unknown`.
+
+This approach preserved ride records while minimizing information loss.
+
+---
+
+### 4. Coordinate Validation
+
+Rows with missing end coordinates were removed, as station inference was not possible without geographic reference.
+
+---
+
+### 5. Ride Duration Engineering
+
+Created a new feature:
+
+`ride_length_mins` = (ride_end_datetime − ride_start_datetime) converted to minutes.
+
+This metric serves as a core behavioral indicator for rider comparison.
+
+---
+
+### 6. Outlier Filtering
+
+To remove structural noise while preserving realistic behavior:
+
+- Removed trips ≤ 1 minute (likely accidental unlocks).
+- Removed trips ≥ 1440 minutes (24 hours; likely lost or stolen bikes).
+
+---
+
+### Cleaning Impact Summary
+
+- Initial merged dataset: 5,552,092 rows
+- Rows removed during cleaning: 154,280 (~2.78%)
+- Final cleaned dataset: 5,397,812 rows
+
+This controlled cleaning strategy focused strictly on data integrity and operational realism, avoiding over-cleaning while ensuring analytical reliability for behavioral comparison.
