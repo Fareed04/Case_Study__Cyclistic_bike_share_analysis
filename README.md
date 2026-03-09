@@ -1,175 +1,310 @@
 # 🚴 Cyclistic Bike-Share Case Study
 
-## Phase 1 — ASK
+## Executive Summary
 
-### Business Task
+This project analyzes behavioral differences between **casual riders** and **annual members** using 12 months of Cyclistic bike-share trip data.
+
+The goal is to identify usage patterns associated with casual riders and generate **data-driven marketing insights** that could help convert them into annual members.
+
+The analysis reveals that:
+
+- Casual riders take **longer rides on average**
+- Members exhibit **clear weekday commuting patterns**
+- Casual riders are **more active on weekends**
+- Casual usage increases significantly during **warmer months**
+
+These behavioral differences suggest that casual riders primarily use the bike-share system for **leisure and recreational trips**, while members rely on it for **routine transportation**.
+
+Based on these findings, targeted **weekend promotions, seasonal membership campaigns, and location-based marketing strategies** could help increase membership conversion.
+
+---
+
+# Key Findings
+
+- Casual riders take rides **~63% longer** on average than members.
+- Member usage peaks during **weekday commuting hours (8 AM and 5 PM)**.
+- Casual riders demonstrate **strong weekend activity**.
+- Both groups ride more in **summer months**, but casual usage increases more sharply.
+- Behavioral patterns strongly indicate **transportation vs recreational usage differences**.
+
+---
+
+# Phase 1 — ASK
+
+## Business Task
 
 Analyze behavioral differences between casual riders and annual members using historical trip data to identify usage patterns associated with remaining a casual rider and support data-driven marketing decision-making aimed at increasing membership conversion.
 
 ---
 
-### Stakeholders
+## Stakeholders
 
 **Lily Moreno (Director of Marketing)**  
-Responsible for developing and executing marketing campaigns. Focused on campaign effectiveness, ROI, data privacy compliance, and ensuring insights align with strategic business goals.
+Responsible for developing and executing marketing campaigns and evaluating marketing ROI.
 
 **Cyclistic Marketing Analytics Team**  
-Responsible for collecting, analyzing, and reporting data to guide marketing strategy. Focused on data quality, analytical integrity, privacy adherence, and measurable business impact.
+Responsible for collecting and analyzing ride data to guide marketing strategy.
 
 **Cyclistic Executive Team**  
-Responsible for approving strategic initiatives. Focused on long-term company growth, profitability, risk mitigation, and ensuring recommendations are supported by credible analysis.
+Responsible for approving strategic initiatives that support long-term company growth.
 
 ---
 
-### Success Criteria
+## Success Criteria
 
-- Clear, quantified differentiation between casual riders and annual members based on behavioral and usage patterns.
-- Statistically supported comparisons identifying meaningful trends.
-- Identification of high-potential behavioral segments for conversion.
-- Executive-ready insights supported by professional data visualizations.
-- Actionable marketing recommendations backed by analytical evidence.
-
----
-
-### Constraints
-
-- Analysis limited to the previous 12 months of historical trip data.
-- No use of personally identifiable information (PII).
-- No demographic linking or inference beyond available trip data.
-- Conclusions must rely on objective statistical comparisons rather than assumptions.
-- Insights are limited to behavioral data and cannot establish direct causation.
-
-## Phase 2 — PREPARE
-
-### Dataset Description
-
-The dataset contains historical trip-level data from Cyclistic’s bike-share program. Each row represents a single completed bike ride, including details about the ride type, start and end stations, geographic coordinates, timestamps, and rider classification (casual or annual member).
-
-The data spans the previous 12 months and is organized into monthly CSV files. It captures operational ride behavior rather than individual customer profiles.
-
-The dataset includes categorical variables such as `rideable_type`, `start_station_name`, `end_station_name`, and `member_casual`, as well as datetime variables (`started_at`, `ended_at`) and numerical variables (station latitude and longitude coordinates).
-
-The dataset does not include personally identifiable information (PII), demographic data, or payment details. As a result, the analysis is limited to behavioral patterns observed at the trip level and cannot track individual users across multiple rides.
+- Clear behavioral differentiation between casual riders and members
+- Statistically supported trend identification
+- Identification of potential rider segments for conversion
+- Executive-ready visualizations
+- Actionable marketing recommendations supported by data
 
 ---
 
-### Data Organization
+## Constraints
 
-The dataset consists of 12 separate monthly CSV files representing one full year of trip data. These files are stored locally within the project directory in Visual Studio Code and are version-controlled through GitHub.
-
-To maintain data integrity and reproducibility, the project follows a structured folder hierarchy:
-
-- `data/raw/` — Contains the original, unmodified monthly CSV files.
-- `data/processed/` — Will contain merged and cleaned datasets prepared for analysis.
-
-The raw data files are preserved to ensure traceability and to prevent accidental modification of source data during processing.
+- Limited to **12 months of historical ride data**
+- No **personally identifiable information (PII)**
+- No demographic data
+- Behavioral analysis only (no causal inference)
 
 ---
 
-### ROCCC Evaluation
+# Phase 2 — PREPARE
+
+## Dataset Description
+
+The dataset contains **trip-level operational data** from Cyclistic's bike-share system. Each row represents a completed ride and includes information such as ride timestamps, start and end stations, bike type, geographic coordinates, and rider classification (`member` or `casual`).
+
+The dataset spans **12 monthly CSV files** representing one full year of ride activity.
+
+Because the dataset does not include personally identifiable information, the analysis focuses on **aggregate behavioral patterns rather than individual user tracking**.
+
+---
+
+## Data Organization
+
+Project files are organized to ensure **data integrity and reproducibility**.
+
+- `data/raw/` — Original monthly datasets
+- `data/processed/` — Cleaned dataset used for analysis
+- `notebooks/` — Jupyter notebook containing analysis code
+- `images/` — Generated visualizations
+
+---
+
+## ROCCC Evaluation
 
 **Reliable**  
-The dataset represents operational trip data collected directly from Cyclistic’s bike-share system. As transactional ride data, it reflects actual recorded usage rather than survey-based or self-reported information.
+Operational trip data collected directly from the bike-share system.
 
 **Original**  
-The data is made available by Motivate International Inc. under a data license agreement with Divvy Bikes. It represents first-party operational data.
+Provided by Motivate International Inc. under Divvy Bikes licensing.
 
 **Comprehensive**  
-The dataset includes detailed trip-level information such as ride duration, start and end stations, timestamps, bike type, and rider classification. While demographic data is not available, the dataset is sufficient for behavioral analysis.
+Contains timestamps, stations, bike types, and rider classification.
 
 **Current**  
-The data covers the most recent 12-month period, making it relevant for identifying current usage trends and seasonal patterns.
+Covers the most recent 12-month period.
 
 **Cited**  
-The dataset is publicly available under a stated license agreement, providing transparency regarding its source and permitted use.
+Publicly available under stated licensing terms.
 
 ---
 
-### Initial Data Quality Observations
+# Phase 3 — PROCESS
 
-A preliminary review reveals missing values in the `end_station_name` and `end_station_id` columns. These will require further validation during the processing phase.
+## Data Cleaning and Feature Engineering
 
-Column names appear consistent across the monthly files, facilitating future merging operations.
+After merging all monthly datasets, the dataset contained:
 
-Both rider classifications — `member` and `casual` — are present in the `member_casual` column, confirming suitability for comparative analysis.
+**5,552,092 ride records**
 
-No obvious structural anomalies are immediately visible through manual inspection; however, additional validation checks such as ride duration consistency and duplicate detection will be performed during data processing.
-
-The dataset spans 12 monthly files and contains a substantial number of ride records, providing sufficient volume for meaningful behavioral analysis once consolidated.
+A structured cleaning pipeline was implemented to ensure analytical reliability.
 
 ---
 
-### Sufficiency for Business Task
+## Column Standardization
 
-The dataset is sufficient to address the business task because it contains trip-level behavioral data that allows for direct comparison between casual riders and annual members. The `member_casual` variable enables segmentation, while timestamps, ride duration, station information, and rideable type provide measurable indicators of usage behavior.
+- `started_at` → `ride_start_datetime`
+- `ended_at` → `ride_end_datetime`
 
-Although demographic and payment data are not included, the business objective focuses on behavioral differences rather than customer profiling. Therefore, trip-level operational data is adequate to generate actionable insights aimed at supporting membership conversion strategies.
-
-## Phase 3 — PROCESS
-
-### Data Cleaning and Feature Engineering
-
-After merging all 12 monthly datasets (5,552,092 rows), a structured and controlled cleaning pipeline was implemented to ensure data integrity while preserving meaningful ride behavior.
+Both variables were converted to datetime format.
 
 ---
 
-### 1. Column Standardization
+## Duplicate Handling
 
-- Renamed `started_at` → `ride_start_datetime`
-- Renamed `ended_at` → `ride_end_datetime`
-- Converted both columns to datetime format to enable accurate time-based calculations.
+Duplicate ride records were removed to ensure each row represents a unique ride event.
 
 ---
 
-### 2. Duplicate Handling
+## Station Name Recovery
 
-- Removed duplicate rows to maintain dataset integrity.
-- Ensured no repeated ride records remained in the dataset.
+Rows with missing station names were recovered using **coordinate-based station mapping**.
 
----
+- Latitude/longitude rounded to 4 decimals
+- Known coordinate–station pairs used as lookup
+- Unresolved stations labeled **Public Rack/Unknown**
 
-### 3. Station Name Recovery via Coordinate Mapping
-
-Instead of removing rows with missing station names, a coordinate-based recovery strategy was implemented:
-
-- Rounded latitude and longitude values to 4 decimal places (~11m precision).
-- Built a master lookup table of known coordinate–station pairs.
-- Recovered missing `start_station_name` and `end_station_name` values using coordinate matching.
-- Remaining unresolved stations were labeled as: `Public Rack/Unknown`.
-
-This approach preserved ride records while minimizing information loss.
+This preserved ride records while minimizing data loss.
 
 ---
 
-### 4. Coordinate Validation
+## Ride Duration Engineering
 
-Rows with missing end coordinates were removed, as station inference was not possible without geographic reference.
+A new feature was created:
 
----
+```
 
-### 5. Ride Duration Engineering
+ride_length_mins = ride_end_datetime − ride_start_datetime
 
-Created a new feature:
+```
 
-`ride_length_mins` = (ride_end_datetime − ride_start_datetime) converted to minutes.
-
-This metric serves as a core behavioral indicator for rider comparison.
+This variable serves as the primary metric for comparing rider behavior.
 
 ---
 
-### 6. Outlier Filtering
+## Outlier Filtering
 
-To remove structural noise while preserving realistic behavior:
+Trips were filtered to remove unrealistic durations:
 
-- Removed trips ≤ 1 minute (likely accidental unlocks).
-- Removed trips ≥ 1440 minutes (24 hours; likely lost or stolen bikes).
+- Removed rides ≤ **1 minute**
+- Removed rides ≥ **24 hours**
 
 ---
 
-### Cleaning Impact Summary
+## Cleaning Impact
 
-- Initial merged dataset: 5,552,092 rows
-- Rows removed during cleaning: 154,280 (~2.78%)
-- Final cleaned dataset: 5,397,812 rows
+| Metric | Value |
+|------|------|
+| Initial rows | 5,552,092 |
+| Removed rows | 154,280 |
+| Final dataset | **5,397,812 rides** |
 
-This controlled cleaning strategy focused strictly on data integrity and operational realism, avoiding over-cleaning while ensuring analytical reliability for behavioral comparison.
+---
+
+# Phase 4 — ANALYZE
+
+## Ride Duration Comparison
+
+| Rider Type | Average Ride Length |
+|-------------|--------------------|
+| Casual Riders | ~19.9 minutes |
+| Annual Members | ~12.2 minutes |
+
+Casual riders take significantly longer rides on average.
+
+![Ride Length Comparison](images/ride_length_members_vs_casual.png)
+
+Additionally, **61.18% of rides longer than 30 minutes are taken by casual riders**, suggesting recreational usage.
+
+---
+
+## Weekly Riding Patterns
+
+Members demonstrate stronger weekday usage, while casual riders show higher activity on weekends.
+
+![Weekly Ride Distribution](images/day_of_week_distribution.png)
+
+This pattern aligns with **commuting behavior for members** and **leisure usage for casual riders**.
+
+---
+
+## Hourly Riding Patterns
+
+Members exhibit pronounced ride peaks around **8 AM** and **5 PM**, consistent with commuting schedules.
+
+Casual rider activity increases throughout the day and peaks during the afternoon.
+
+![Hourly Ride Patterns](images/hourly_ride_patterns_members_vs_casual.png)
+
+---
+
+## Seasonal Usage Trends
+
+Ride volume increases for both rider groups during warmer months.
+
+![Monthly Ride Trends](images/monthly_ride_distribution.png)
+
+Casual rider activity increases more dramatically, suggesting stronger seasonal dependence.
+
+---
+
+# Phase 5 — SHARE
+
+## Key Insights
+
+**Ride Duration**  
+Casual riders take longer rides on average and account for the majority of rides exceeding 30 minutes.
+
+**Weekly Behavior**  
+Members ride primarily during weekdays, while casual riders show higher weekend activity.
+
+**Daily Patterns**  
+Member rides peak during commuting hours; casual riders ride later in the day.
+
+**Seasonality**  
+Casual ridership increases significantly during summer months.
+
+---
+
+## Recommendations
+
+### 1. Weekend and Long-Ride Incentives
+Offer targeted promotions emphasizing cost savings for longer rides and weekend usage.
+
+### 2. Membership Value Messaging
+Promote membership savings through app notifications and station-level marketing.
+
+### 3. Seasonal Membership Campaigns
+Launch membership promotions during peak riding seasons when casual rider activity is highest.
+
+---
+
+## Next Steps
+
+**Station-Level Behavioral Analysis**
+
+Analyze station usage to identify locations with high casual ridership (parks, tourist areas, waterfronts).
+
+**Location-Based Conversion Opportunities**
+
+Target stations with high casual activity but low member usage with localized promotions.
+
+---
+
+# Tools Used
+
+- Python
+- Pandas
+- NumPy
+- Matplotlib
+- Jupyter Notebook
+- Git / GitHub
+
+---
+
+# Project Structure
+
+```
+
+cyclistic-bike-share-analysis
+│
+├── data
+│   ├── raw
+│   │   └── monthly_trip_files.csv
+│   └── processed
+│       └── cleaned_bike_data.csv
+│
+├── notebooks
+│   └── cyclistic_analysis.ipynb
+│
+├── images
+│   ├── ride_length_members_vs_casual.png
+│   ├── day_of_week_distribution.png
+│   ├── hourly_ride_patterns_members_vs_casual.png
+│   └── monthly_ride_distribution.png
+│
+├── requirements.txt
+├── .gitignore
+└── README.md
