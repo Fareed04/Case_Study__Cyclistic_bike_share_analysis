@@ -200,6 +200,16 @@ Additionally, **61.18% of rides longer than 30 minutes are taken by casual rider
 
 ---
 
+## Ride Duration Distribution
+
+To better understand ride behavior, the distribution of ride lengths was analyzed for both rider types.
+
+![Ride Length Distribution](images/ride_length_distribution.png)
+
+Members show a tighter concentration of shorter rides, while casual riders exhibit a wider distribution with a longer tail toward extended ride durations. This reinforces the interpretation that casual riders are more likely engaging in leisure-oriented trips.
+
+---
+
 ## Weekly Riding Patterns
 
 Members demonstrate stronger weekday usage, while casual riders show higher activity on weekends.
