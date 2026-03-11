@@ -1,6 +1,20 @@
 # 🚴 Cyclistic Bike-Share Case Study
 
-## Executive Summary
+## Project Overview
+
+| Category | Details |
+|---|---|
+| Project Type | Data Analysis Case Study |
+| Tools Used | Python, Pandas, NumPy, Matplotlib, Jupyter |
+| Dataset | Cyclistic Bike Share (12 Months of Trip Data) |
+| Focus | Behavioral Analysis of Casual vs Annual Riders |
+| Goal | Identify insights to support membership conversion |
+
+Dataset Source: Divvy Bike Share Data (Motivate International Inc.)
+
+---
+
+# Executive Summary
 
 This project analyzes behavioral differences between **casual riders** and **annual members** using 12 months of Cyclistic bike-share trip data.
 
@@ -206,7 +220,7 @@ To better understand ride behavior, the distribution of ride lengths was analyze
 
 ![Ride Length Distribution](images/ride_length_distribution.png)
 
-Members show a tighter concentration of shorter rides, while casual riders exhibit a wider distribution with a longer tail toward extended ride durations. This reinforces the interpretation that casual riders are more likely engaging in leisure-oriented trips.
+Members show a tighter concentration of shorter rides, while casual riders exhibit a wider distribution with a longer tail toward extended ride durations.
 
 ---
 
@@ -258,26 +272,31 @@ Casual ridership increases significantly during summer months.
 
 ---
 
+# Phase 6 — ACT
+
 ## Recommendations
 
 ### 1. Weekend and Long-Ride Incentives
+
 Offer targeted promotions emphasizing cost savings for longer rides and weekend usage.
 
 ### 2. Membership Value Messaging
+
 Promote membership savings through app notifications and station-level marketing.
 
 ### 3. Seasonal Membership Campaigns
+
 Launch membership promotions during peak riding seasons when casual rider activity is highest.
 
 ---
 
 ## Next Steps
 
-**Station-Level Behavioral Analysis**
+### Station-Level Behavioral Analysis
 
 Analyze station usage to identify locations with high casual ridership (parks, tourist areas, waterfronts).
 
-**Location-Based Conversion Opportunities**
+### Location-Based Conversion Opportunities
 
 Target stations with high casual activity but low member usage with localized promotions.
 
@@ -304,13 +323,16 @@ cyclistic-bike-share-analysis
 │   ├── raw
 │   │   └── monthly_trip_files.csv
 │   └── processed
+│       ├── merged_trip_data.csv
 │       └── cleaned_bike_data.csv
 │
 ├── notebooks
-│   └── cyclistic_analysis.ipynb
+│   ├── cyclistic_analysis.ipynb
+│   └── experiments.ipynb
 │
 ├── images
 │   ├── ride_length_members_vs_casual.png
+│   ├── ride_length_distribution.png
 │   ├── day_of_week_distribution.png
 │   ├── hourly_ride_patterns_members_vs_casual.png
 │   └── monthly_ride_distribution.png
