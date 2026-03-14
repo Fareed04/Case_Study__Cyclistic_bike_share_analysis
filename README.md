@@ -201,16 +201,18 @@ Trips were filtered to remove unrealistic durations:
 
 ## Ride Duration Comparison
 
-| Rider Type | Average Ride Length |
-|-------------|--------------------|
-| Casual Riders | ~19.9 minutes |
-| Annual Members | ~12.2 minutes |
+| Rider Type | Mean Ride Length | Median Ride Length |
+|-------------|------------------|--------------------|
+| Casual Riders | ~19.9 minutes | ~11.9 minutes |
+| Annual Members | ~12.2 minutes | ~8.8 minutes |
 
-Casual riders take significantly longer rides on average.
+Ride duration shows a right skew for both rider groups. A small number of long rides increases the mean. Median values reflect the typical ride length more accurately.
+
+Casual riders still take longer rides than members under both measures.
 
 ![Ride Length Comparison](images/ride_length_members_vs_casual.png)
 
-Additionally, **61.18% of rides longer than 30 minutes are taken by casual riders**, suggesting recreational usage.
+Additionally, **61.18% of rides longer than 30 minutes are taken by casual riders**, which supports the interpretation that casual riders use the bikes more often for longer leisure trips.
 
 ---
 
